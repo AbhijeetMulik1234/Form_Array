@@ -1,0 +1,52 @@
+form {
+  font-family: Arial, sans-serif;
+  max-width: 500px;
+  margin: auto;
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.input-line {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.input-field {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  flex: 1;
+}
+
+.error {
+  color: red;
+  font-size: 0.85em;
+}
+
+.add-button,
+.remove-button,
+.submit-btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.add-button {
+  background: #bc42c0;
+  color: white;
+}
+
+.remove-button {
+  background: #e74c3c;
+  color: white;
+}
+
+.submit-button {
+  background: #000000;
+  color: rgb(255, 255, 255);
+  margin-top: 10px;
+}

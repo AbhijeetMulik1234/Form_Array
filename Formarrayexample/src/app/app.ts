@@ -24,6 +24,7 @@ export class App {
   ngOnInit(): void {
     this.myForm = this.fb.group({
       mySkills: this.fb.array([]), //Form array starts as empty
+      myadress: this.fb.array([]), //form array defined of adress
     });
   }
   // Getter for fromarray
@@ -45,8 +46,37 @@ export class App {
     debugger;
     this.skillss.removeAt(index);
   }
+
+  // -------This is for adrees field in this of the form array------//
+
+  get myadress(): FormArray {
+    return this.myForm.get('myadress') as FormArray;
+  }
+
+  newAdress(): FormGroup {
+    return this.fb.group({
+      street: ['', Validators.required],
+      city: ['', Validators.required],
+      pincode: ['', Validators.required],
+    });
+  }
+
+  //add new adress in the array function
+  addAdress() {
+    debugger;
+    this.myadress.push(this.newAdress());
+  }
+
+  removeAdress(index: number) {
+    this.myadress.removeAt(index);
+  }
+
   OnSubmit() {
-    alert('form is submitted');
-    console.log('Form submitted');
+    if (this.myForm.valid) {
+      console.log('Form Submitted', this.myForm.value);
+      alert('form is proper');
+    } else {
+      alert('error');
+    }
   }
 }

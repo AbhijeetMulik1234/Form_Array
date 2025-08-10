@@ -1,21 +1,71 @@
 <form [formGroup]="myForm" (ngSubmit)="OnSubmit()">
+  <!--Skills field in the form-->
   <div formArrayName="mySkills">
     <div
       *ngFor="let myForm of skillss.controls; let i = index"
       [formGroupName]="i"
+      class="form-group"
     >
-      <input formControlName="mySkills" placeholder="Enter skill" />
-      <button type="button" (click)="removeSkill(i)">Remove</button>
-      <small
-        *ngIf="myForm.get('mySkills')?.errors?.['required'] && myForm.get('mySkills')?.touched"
-      >
-        skill name is required
-      </small>
+      <div class="input-line">
+        <input
+          formControlName="skillName"
+          placeholder="Enter skill"
+          class="input-field"
+        />
+        <button type="button" (click)="removeSkill(i)" class="remove-button">
+          Remove
+        </button>
+        <div
+          class="error"
+          *ngIf="
+            myForm.get('skillName')?.touched &&
+            myForm.get('skillName')?.hasError('required')
+          "
+        >
+          skill name is required
+        </div>
+      </div>
     </div>
   </div>
 
   <br />
-  <button type="button" (click)="addSkill()">+ Add Skill</button>
-  <br /><br />
-  <button type="submit">Submit</button>
+  <button type="button" (click)="addSkill()" class="add-button">
+    + Add Skill
+  </button>
+
+  <!--Adress field in the form-->
+  <div formArrayName="myadress">
+    <div
+      *ngFor="let a of myadress.controls; let i = index"
+      [formGroupName]="i"
+      class="form-group"
+    >
+      <div class="input-line">
+        <input
+          formControlName="street"
+          placeholder="Street"
+          class="input-field"
+        />
+        <input formControlName="city" placeholder="City" class="input-field" />
+        <input
+          formControlName="pincode"
+          placeholder="Pincode"
+          class="input-field"
+        />
+        <button type="button" (click)="removeAdress(i)" class="remove-button">
+          Remove
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <button type="button" (click)="addAdress()" class="add-button">
+    Add Adress
+  </button>
+  <br />
+
+  <button type="submit" class="submit-button">Submit</button>
 </form>
+
+<hr />
+<pre>{{ myForm.value | json }}</pre>
